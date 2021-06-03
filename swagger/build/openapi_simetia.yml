@@ -22,10 +22,10 @@ paths:
         - application/json
       parameters:
         - in: body
-          name: data
+          name: body
           description: user creation
+          required: false
           schema:
-            type: object
             required:
               - name
               - email
