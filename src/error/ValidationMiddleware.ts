@@ -27,7 +27,7 @@ export const authenticateMiddleware = async (req: any, res: any, next: any) => {
 
 export function validationMiddleware<T> (type: any): express.RequestHandler {
     return async (req, res, next) => {
-        validate(plainToClass(type, req.body))
+        validate(plainToClass(type, req.body.data))
             .then( async(errors: ValidationError[]) => {
                 if (errors.length > 0) {
                     console.log("errors: ", errors);
