@@ -27,11 +27,11 @@ paths:
           schema:
             type: object
             required:
-              - username
+              - name
               - email
               - password
             properties:
-              username:
+              name:
                 type: string
               email:
                 type: string
