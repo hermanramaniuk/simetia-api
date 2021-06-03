@@ -140,7 +140,7 @@ paths:
     get:
       tags:
       - API Endpoints
-      summary: "Get favorite lis"
+      summary: "Get favorite list"
       description: "Get all favorits"
       operationId: get_favorites
 
