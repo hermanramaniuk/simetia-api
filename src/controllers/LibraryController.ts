@@ -16,7 +16,7 @@ export default class LibraryController {
 
     public addBook2Library = async(request: Request, response: Response, next: NextFunction) => {
         const body = request.body;
-        const role = request.auth.role;
+        const role = request.body.auth.role;
         
         if (role === 'ADMIN') {
             if (body) {
