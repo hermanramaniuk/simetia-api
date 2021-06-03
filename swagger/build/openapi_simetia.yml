@@ -18,10 +18,25 @@ paths:
       summary: "Register new user"
       description: "Register new user with user credentials (name, email, password)"
       operationId: register
+      consumes:
+        - application/json
       parameters:
-        - $ref: '#/components/parameters/name'
-        - $ref: '#/components/parameters/email'
-        - $ref: '#/components/parameters/password'
+        - in: body
+          name: user
+          description: user creation
+          schema:
+            type: object
+            required:
+              - username
+              - email
+              - password
+            properties:
+              username:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
 
       responses:
         "200":
