@@ -12,8 +12,8 @@ export const authenticateMiddleware = async (req: any, res: any, next: any) => {
 
     try {
         const payload = await jwt.verify(token);
-        console.log("payload", payload);
-        const user = await userRepo.getUserByCondition({id: payload.user});
+        const userid = (payload as any).user;
+        const user = await userRepo.getUserByCondition({id: userid});
 
         if(!user) {
             next(new HttpException(401, "Unauthorized",''));
