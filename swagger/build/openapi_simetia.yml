@@ -224,49 +224,49 @@ components:
   parameters:
     name:
       name: name
-      in: query
+      in: body
       description: "ex: Karly John"
       schema:
         type: string
     email:
       name: email
-      in: query
+      in: body
       description: "ex: karlyjohn@gmail.com"
       schema:
         type: string
     password:
       name: password
-      in: query
+      in: body
       description: "ex: karlyjohn!123456"
       schema:
         type: string
     book_name:
       name: book_name
-      in: query
+      in: body
       description: "ex: Holy Knight"
       schema:
         type: string
     book_summary:
       name: book_summary
-      in: query
+      in: body
       description: "ex: Fantastic book"
       schema:
         type: string
     user_id:
       name: user_id
-      in: query
+      in: body
       description: "ex: 1"
       schema:
         type: string
     book_id:
       name: book_id
-      in: query
+      in: body
       description: "ex: 1"
       schema:
         type: string
     fav_id:
       name: fav_id
-      in: query
+      in: body
       description: "ex: 1"
       schema:
         type: string
