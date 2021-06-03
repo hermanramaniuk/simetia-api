@@ -34,11 +34,12 @@ exports.authenticateMiddleware = async (req, res, next) => {
     try {
         const payload = await jwt.verify(token);
         const userid = payload.user;
-        const user = await userRepo.getUserByCondition({ id: userid });
+        let user;
+        user = await userRepo.getUserByCondition({ id: userid });
         if (!user) {
             next(new HttpException_1.default(401, "Unauthorized", ''));
         }
-        req.auth = user;
+        req.body.user = user;
         next();
     }
     catch (error) {

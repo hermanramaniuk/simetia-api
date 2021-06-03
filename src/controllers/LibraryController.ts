@@ -3,6 +3,7 @@ import { Response, Request, NextFunction } from 'express';
 import HttpException from '../error/HttpException';
 import { LibraryRepo } from './../repositories/library/LibraryRepo';
 import { LibraryMapper } from '../mappers/LibraryMapper';
+import RequestWithUser from '../mappers/RequestWithUser';
 
 export default class LibraryController {
 
@@ -16,8 +17,8 @@ export default class LibraryController {
 
     public addBook2Library = async(request: Request, response: Response, next: NextFunction) => {
         const body = request.body;
-        const role = request.body.auth.role;
-        
+        const role = request.body.user.role;
+
         if (role === 'ADMIN') {
             if (body) {
                 try {
@@ -28,7 +29,7 @@ export default class LibraryController {
                 }
             }            
         } else {
-            return response.status(400).json("You don't have permission");
+            return response.status(200).json("You don't have permission, User cannot add, Admin can only add");
         }
     }
 

@@ -8,7 +8,7 @@ class LibraryController {
     constructor(libraryRepo, libraryMapper) {
         this.addBook2Library = async (request, response, next) => {
             const body = request.body;
-            const role = request.body.auth.role;
+            const role = request.body.user.role;
             if (role === 'ADMIN') {
                 if (body) {
                     try {
@@ -21,7 +21,7 @@ class LibraryController {
                 }
             }
             else {
-                return response.status(400).json("You don't have permission");
+                return response.status(200).json("You don't have permission, User cannot add, Admin can only add");
             }
         };
         this.removeBook2Library = async (request, response, next) => {

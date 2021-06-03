@@ -34,7 +34,7 @@ class UserController {
             }
         };
         this.create = async (request, response, next) => {
-            const body = request.body.user;
+            const body = request.body;
             if (body) {
                 try {
                     let salt = await bcrypt_1.default.genSalt(10);

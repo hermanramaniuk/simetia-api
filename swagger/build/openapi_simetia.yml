@@ -1,302 +1,248 @@
-openapi: "3.0.2"
+openapi: 3.0.0
 info:
-  title: "OpenAPI for Simetia HR Test"
-  description: "OpenAPI for Simetia's test laboratory"
-  version: "1.0"
-  contact:
-    name: " with Herman Ramaniuk"
-    email: "romanukgerakonst@gmail.com"
+  version: 1.0.0
+  title: Simetia Test APIs
+  description: Simetia Express(Typescript) API Documentation
 
 servers:
-- url: "https://fierce-woodland-86286.herokuapp.com/api"
+  - url: http://localhost:4001/api
 
-paths:
-  /register:
-    post:
-      tags:
-      - API Endpoints
-      summary: "Register new user"
-      description: "Register new user with user credentials (name, email, password)"
-      operationId: register
-      consumes:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: user creation
-          required: false
-          schema:
-            required:
-              - name
-              - email
-              - password
-            properties:
-              name:
-                type: string
-              email:
-                type: string
-              password:
-                type: string
-
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/200'
-        "404":
-          description: Not found response
-          content:
-            text/plain:
-              schema:
-                title: User register failed
-                type: string
-                example: Not found
-  /login:
-    post:
-      tags:
-      - API Endpoints
-      summary: "User login"
-      description: "Login with user credentials (email, password)"
-      operationId: login
-      parameters:
-        - $ref: '#/components/parameters/email'
-        - $ref: '#/components/parameters/password'
-
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/200'
-        "404":
-          description: Not found response
-          content:
-            text/plain:
-              schema:
-                title: User login failed
-                type: string
-                example: Not found
-  /book:
-    get:
-      tags:
-      - API Endpoints
-      summary: "Get book list from library"
-      description: "Get all books from library"
-      operationId: get_book_list
-
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/200'
-        "404":
-          description: Not found response
-          content:
-            text/plain:
-              schema:
-                title: Get book list failed
-                type: string
-                example: Not found
-    post:
-      tags:
-      - API Endpoints
-      summary: "Register book to the library"
-      description: "Register book to the library"
-      operationId: register_book
-      parameters:
-        - $ref: '#/components/parameters/book_name'
-        - $ref: '#/components/parameters/book_summary'
-
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/200'
-        "404":
-          description: Not found response
-          content:
-            text/plain:
-              schema:
-                title: Register book to the library failed
-                type: string
-                example: Not found
-    delete:
-      tags:
-      - API Endpoints
-      summary: "Delete book from the library"
-      description: "Delete book from the library"
-      operationId: delete_book
-      parameters:
-        - $ref: '#/components/parameters/book_id'
-
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/200'
-        "404":
-          description: Not found response
-          content:
-            text/plain:
-              schema:
-                title: Delete book failed
-                type: string
-                example: Not found
-  /favorite:
-    get:
-      tags:
-      - API Endpoints
-      summary: "Get favorite list"
-      description: "Get all favorits"
-      operationId: get_favorites
-
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/200'
-        "404":
-          description: Not found response
-          content:
-            text/plain:
-              schema:
-                title: Get favorite list failed
-                type: string
-                example: Not found
-    post:
-      tags:
-      - API Endpoints
-      summary: "Register favorite to favorites"
-      description: "Register favorite to favorites"
-      operationId: register_favorite
-      parameters:
-        - $ref: '#/components/parameters/user_id'
-        - $ref: '#/components/parameters/book_id'
-
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/200'
-        "404":
-          description: Not found response
-          content:
-            text/plain:
-              schema:
-                title: Register favorite to favorites
-                type: string
-                example: Not found
-    delete:
-      tags:
-      - API Endpoints
-      summary: "Delete favorite from favorites"
-      description: "Delete favorite from favorites"
-      operationId: delete_favorite
-      parameters:
-        - $ref: '#/components/parameters/fav_id'
-
-      responses:
-        "200":
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/200'
-        "404":
-          description: Not found response
-          content:
-            text/plain:
-              schema:
-                title: Delete favorite failed
-                type: string
-                example: Not found
 security:
 - app_id: []
 
-tags:
-  - name: API Endpoints
-    description: "API Endpoints for Simetia test task"
-
-externalDocs:
-  description: API Documentation
-  url: https://openweathermap.org/api
-
 components:
-
-  parameters:
-    name:
-      name: name
-      in: body
-      description: "ex: Karly John"
-      schema:
-        type: string
-    email:
-      name: email
-      in: body
-      description: "ex: karlyjohn@gmail.com"
-      schema:
-        type: string
-    password:
-      name: password
-      in: body
-      description: "ex: karlyjohn!123456"
-      schema:
-        type: string
-    book_name:
-      name: book_name
-      in: body
-      description: "ex: Holy Knight"
-      schema:
-        type: string
-    book_summary:
-      name: book_summary
-      in: body
-      description: "ex: Fantastic book"
-      schema:
-        type: string
-    user_id:
-      name: user_id
-      in: body
-      description: "ex: 1"
-      schema:
-        type: string
-    book_id:
-      name: book_id
-      in: body
-      description: "ex: 1"
-      schema:
-        type: string
-    fav_id:
-      name: fav_id
-      in: body
-      description: "ex: 1"
-      schema:
-        type: string
-
-  schemas:
-    "200":
-      title: Successful response
-      type: string
-      example: '[{...
-      },...,
-      ]'
-
   securitySchemes:
     app_id:
       type: apiKey
-      description: "API key to authorize requests. (If you don't have an API key, get one at https://openweathermap.org/. See https://idratherbewriting.com/learnapidoc/docapis_get_auth_keys.html for details.)"
-      name: appid
-      in: query
+      description: "Authorization header(please login and copy token here)"
+      name: Authorization
+      in: header
+
+paths:
+  /register:
+    #  ----- Added lines  ----------------------------------------
+    post:
+      description: Register new user with user credentials (name, email, password)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object 
+              required:
+                - name
+                - email
+                - password
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+
+      responses:
+        '200':
+          description: Successfully created a new user
+
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+    #  ---- /Added lines  ----------------------------------------
+  /login:
+    #  ----- Added lines  ----------------------------------------
+    post:
+      description: Login with user credentials (email, password)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object 
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+
+      responses:
+        '200':
+          description: Success
+
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+    #  ---- /Added lines  ----------------------------------------
+  /book:
+    #  ----- Added lines  ----------------------------------------
+    get:
+      description: Get book list from library
+      responses:
+        '200':
+          description: Success
+
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+    #  ---- /Added lines  ----------------------------------------
+    post:
+      description: Register book to the library
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object 
+              required:
+                - bookName
+                - bookSummary
+              properties:
+                bookName:
+                  type: string
+                bookSummary:
+                  type: string
+
+      responses:
+        '200':
+          description: Success
+
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+    #  ---- /Added lines  ----------------------------------------
+    delete:
+      description: Delete book from the library
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object 
+              required:
+                - id
+              properties:
+                id:
+                  type: number
+
+      responses:
+        '200':
+          description: Success
+
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+    #  ---- /Added lines  ----------------------------------------
+  /favorite:
+    #  ----- Added lines  ----------------------------------------
+    get:
+      description: Get favorite from favorites
+      responses:
+        '200':
+          description: Success
+
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+    #  ---- /Added lines  ----------------------------------------
+    post:
+      description: Register favorite to favorites
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object 
+              required:
+                - userId
+                - bookId
+              properties:
+                userId:
+                  type: number
+                bookId:
+                  type: number
+
+      responses:
+        '200':
+          description: Success
+
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+    #  ---- /Added lines  ----------------------------------------
+    delete:
+      description: Delete favorite from favorites
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object 
+              required:
+                - id
+              properties:
+                id:
+                  type: number
+
+      responses:
+        '200':
+          description: Success
+
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+    #  ---- /Added lines  ----------------------------------------

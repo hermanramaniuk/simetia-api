@@ -4,6 +4,7 @@ import * as express from 'express';
 import HttpException from './/HttpException';
 import * as jwt from  '../authentication/jwt';
 import { UsersRepo } from '../repositories/users/UsersRepo';
+import User from '../models/User';
 
 const userRepo = new UsersRepo();
 
@@ -13,12 +14,12 @@ export const authenticateMiddleware = async (req: any, res: any, next: any) => {
     try {
         const payload = await jwt.verify(token);
         const userid = (payload as any).user;
-        const user = await userRepo.getUserByCondition({id: userid});
-
+        let user: User;
+        user = await userRepo.getUserByCondition({id: userid});
         if(!user) {
             next(new HttpException(401, "Unauthorized",''));
         }
-        req.auth = user;
+        req.body.user = user;
         next();
     } catch(error) {
         next(new HttpException(401, error,''));
