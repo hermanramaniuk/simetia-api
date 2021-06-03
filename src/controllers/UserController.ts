@@ -41,7 +41,7 @@ export default class UserController {
     }
 
     public create = async(request: Request, response: Response, next: NextFunction) => {
-        const body = request.body;
+        const body = request.body.user;
 
         if (body) {
             try {

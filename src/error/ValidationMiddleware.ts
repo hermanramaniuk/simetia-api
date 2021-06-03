@@ -31,6 +31,7 @@ export function validationMiddleware<T> (type: any): express.RequestHandler {
             .then( async(errors: ValidationError[]) => {
                 if (errors.length > 0) {
                     console.log("errors: ", errors);
+                    next(new HttpException(401, "Error occured",''));
                 } else {
                     next();
                 }

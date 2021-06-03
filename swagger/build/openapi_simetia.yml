@@ -8,7 +8,7 @@ info:
     email: "romanukgerakonst@gmail.com"
 
 servers:
-- url: "https://fierce-woodland-86286.herokuapp.com/api"
+- url: "http://localhost:4001/api"
 
 paths:
   /register:
@@ -22,7 +22,7 @@ paths:
         - application/json
       parameters:
         - in: body
-          name: user
+          name: body
           description: user creation
           schema:
             type: object

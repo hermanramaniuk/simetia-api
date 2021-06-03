@@ -51,6 +51,7 @@ function validationMiddleware(type) {
             .then(async (errors) => {
             if (errors.length > 0) {
                 console.log("errors: ", errors);
+                next(new HttpException_1.default(401, "Error occured", ''));
             }
             else {
                 next();
